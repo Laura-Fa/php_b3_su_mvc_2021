@@ -13,6 +13,7 @@ if (
 use App\Config\Connection;
 use App\Config\TwigEnvironment;
 use App\Controller\IndexController;
+use App\Controller\RegisterException;
 use App\DependencyInjection\Container;
 use App\Routing\RouteNotFoundException;
 use App\Routing\Router;
@@ -53,5 +54,8 @@ try {
   $router->execute($requestUri, $requestMethod);
 } catch (RouteNotFoundException $e) {
   http_response_code(404);
+  echo $twig->render('404.html.twig', ['title' => $e->getMessage()]);
+}catch(RegisterException $e){
+  //page d'inscription echo $twig->render('register.html.twig', ['error' => $e->getMessage()]);
   echo $twig->render('404.html.twig', ['title' => $e->getMessage()]);
 }
