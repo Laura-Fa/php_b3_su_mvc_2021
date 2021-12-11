@@ -13,6 +13,7 @@ if (
 use App\Config\Connection;
 use App\Config\TwigEnvironment;
 use App\Controller\IndexController;
+use App\Controller\LoginException;
 use App\Controller\RegisterException;
 use App\DependencyInjection\Container;
 use App\Routing\RouteNotFoundException;
@@ -50,12 +51,23 @@ if (php_sapi_name() === 'cli') {
 $requestUri = $_SERVER['REQUEST_URI'];
 $requestMethod = $_SERVER['REQUEST_METHOD'];
 
+session_start();
+// si non connecte et pas de demande de creation de compte ou de connexion afficher la page index
+if(!isset($_SESSION['username']) && $requestUri != "/registerForm" && $requestUri != "/loginForm" && $requestUri != "/register" && $requestUri != "/login" ){
+  $requestUri="/";
+  $requestMethod = "GET";
+}
+
+// afficher la page demandee
 try {
   $router->execute($requestUri, $requestMethod);
 } catch (RouteNotFoundException $e) {
   http_response_code(404);
   echo $twig->render('404.html.twig', ['title' => $e->getMessage()]);
 }catch(RegisterException $e){
-  //page d'inscription echo $twig->render('register.html.twig', ['error' => $e->getMessage()]);
-  echo $twig->render('404.html.twig', ['title' => $e->getMessage()]);
+  //page d'inscription 
+  echo $twig->render('userRegistrationForm.html.twig',['error' => $e->getMessage()]);
+}catch(LoginException $e){
+  // page de connexion
+  echo $twig->render('userLoginForm.html.twig',['error' => $e->getMessage()]);
 }
