@@ -17,7 +17,7 @@ class AuthController extends AbstractController
   #[Route(path: "/registerForm", name: "showRegisterUserForm", httpMethod: "GET")]
   public function showRegisterUserForm()
   {
-    echo $this->twig->render('userRegistrationForm.html.twig');
+    echo $this->twig->render('user/userRegistrationForm.html.twig');
   }
 
   /**
@@ -28,7 +28,7 @@ class AuthController extends AbstractController
   #[Route(path: "/loginForm", name: "showLoginUserForm", httpMethod: "GET")]
   public function showLoginUserForm()
   {
-    echo $this->twig->render('userLoginForm.html.twig');
+    echo $this->twig->render('user/userLoginForm.html.twig');
   }
 
   /**
@@ -89,6 +89,13 @@ class AuthController extends AbstractController
       header('Location:loginForm');
   }
 
+
+  /**
+   * Connexion de l'utilisateur
+   *
+   * @param EntityManager $em
+   * @return void
+   */
   #[Route(path: "/login", name: "login", httpMethod: "POST")]
   public function login(EntityManager $em)
   {
@@ -116,6 +123,11 @@ class AuthController extends AbstractController
     
   }
 
+  /**
+   * Déconnecter un utilisateur
+   *
+   * @return void
+   */
   #[Route(path: "/logout", name: "logout", httpMethod: "GET")]
   public function logout(){
     unset($_SESSION['username']);

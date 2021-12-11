@@ -66,8 +66,8 @@ try {
   echo $twig->render('404.html.twig', ['title' => $e->getMessage()]);
 }catch(RegisterException $e){
   //page d'inscription 
-  echo $twig->render('userRegistrationForm.html.twig',['error' => $e->getMessage()]);
+  echo $twig->render('user/userRegistrationForm.html.twig',['error' => $e->getMessage()]);
 }catch(LoginException $e){
   // page de connexion
-  echo $twig->render('userLoginForm.html.twig',['error' => $e->getMessage()]);
+  echo $twig->render('user/userLoginForm.html.twig',['error' => $e->getMessage()]);
 }

@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Routing\Attribute\Route;
-use DateTime;
 use Doctrine\ORM\EntityManager;
 
 class IndexController extends AbstractController
@@ -23,20 +22,14 @@ class IndexController extends AbstractController
     $em->persist($user);
     $em->flush();*/
 
-
-    /*if($_SESSION['username'] === null){
-      $message = "Vous n'êtes pas connecté.";
-    }else{
-      $message = "Vous êtes connecté.";
-    }*/
-    echo $this->twig->render('index.html.twig');
+    echo $this->twig->render('index/index.html.twig');
     
   }
 
   #[Route(path: "/appPage", name: "appPage", httpMethod: "GET")]
   public function appPage()
   {
-    echo $this->twig->render('appPage.html.twig');
+    echo $this->twig->render('index/appPage.html.twig');
   }
 
   #[Route(path: "/contact", name: "contact", httpMethod: "POST")]
