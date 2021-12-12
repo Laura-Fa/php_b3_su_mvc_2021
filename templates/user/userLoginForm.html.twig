@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Connexion</title>
-    </head>
-
-    <body>
+{% extends 'base.html.twig' %}
+{% block title %} Connexion {% endblock %}
+{% block body %}
+    <h1>Connexion</h1>
     <form action="/login" method="post">
         <label for="username">Pseudo</label><br>
         <input type="text" name="username">
@@ -19,5 +14,4 @@
         <button type="submit">Se connecter</button>
         <p>{{error}}</p>
     </form>
-    </body>
-</html>
+{% endblock %}

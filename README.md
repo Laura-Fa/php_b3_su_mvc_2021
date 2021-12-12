@@ -9,7 +9,7 @@ Nous avons repris l'entité User et ses attributs id, username, password et emai
 ### Inscription/Authentification
 
 #### Les vues
-Nous avons créé deux vues, userRegistrationForm pour afficher le formulaire d'inscription et userLoginForm pour afficher le formulaire de connexion.
+Nous avons créé deux vues, userRegistrationForm pour afficher le formulaire d'inscription et userLoginForm pour afficher le formulaire de connexion. Nous avons également défini base.html.twig qui contient le html commum aux différentes vues et qui nous évite de dupliquer cette portion de code dans toutes nos vues.
 
 #### Le contrôleur
 Nous avons créé un nouveau contrôleur AuthController qui gère l'inscription et la connexion.
